@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>System Monitoring Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+<h1>System Monitoring Dashboard</h1>
+
+<div class="dashboard">
+
+    <div class="card">
+        <h2>CPU Usage</h2>
+        <p class="{% if system.cpu > 80 %}danger{% elif system.cpu > 60 %}warning{% else %}good{% endif %}">
+            {{ system.cpu }}%
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>Memory Usage</h2>
+        <p class="{% if system.memory > 80 %}danger{% elif system.memory > 60 %}warning{% else %}good{% endif %}">
+            {{ system.memory }}%
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>Disk Usage</h2>
+        <p class="{% if system.disk > 80 %}danger{% elif system.disk > 60 %}warning{% else %}good{% endif %}">
+            {{ system.disk }}%
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>System Uptime</h2>
+        <p>{{ system.uptime }}</p>
+    </div>
+
+    <div class="card">
+        <h2>Hostname</h2>
+        <p>{{ system.hostname }}</p>
+    </div>
+
+    <div class="card">
+        <h2>Operating System</h2>
+        <p>{{ system.os }}</p>
+    </div>
+
+</div>
+<script>
+    setTimeout(function(){
+        location.reload();
+    }, 5000);
+</script>
+
+</body>
+</html>
